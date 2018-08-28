@@ -6,15 +6,15 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: ENC(gc16brBHPNq27HsjaULgKGq00Rz6ZUji)
-    url: jdbc:mysql://139.224.200.249:3309/pig?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    password: 123
+    url: jdbc:mysql://127.0.0.1:3306/pig?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
 
 zipkin:
   collector:
     rabbitmq:
-      addresses: 139.224.200.249:5682
-      password: lengleng
-      username: pig
+      addresses: 127.0.0.1:5672
+      password: guest
+      username: guest
       queue: zipkin
   storage:
     type: mysql
