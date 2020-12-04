@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.daer.cloud.common.core.config.RedisTemplateConfig,\
+  com.daer.cloud.common.core.config.RestTemplateConfig,\
+  com.daer.cloud.common.core.exception.GlobalExceptionHandler,\
+  com.daer.cloud.common.core.util.SpringContextHolder

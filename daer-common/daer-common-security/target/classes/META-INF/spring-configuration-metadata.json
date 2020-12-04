@@ -1,0 +1,35 @@
+{
+  "groups": [
+    {
+      "name": "security.oauth2",
+      "type": "com.daer.cloud.common.security.config.Oauth2Properties",
+      "sourceType": "com.daer.cloud.common.security.config.Oauth2Properties"
+    },
+    {
+      "name": "security.oauth2.ignore",
+      "type": "com.daer.cloud.common.security.config.FilterIgnoreProperties",
+      "sourceType": "com.daer.cloud.common.security.config.FilterIgnoreProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "security.oauth2.access-token-time",
+      "type": "java.lang.Integer",
+      "description": "token 有效期",
+      "sourceType": "com.daer.cloud.common.security.config.Oauth2Properties"
+    },
+    {
+      "name": "security.oauth2.ignore.urls",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.daer.cloud.common.security.config.FilterIgnoreProperties"
+    },
+    {
+      "name": "security.oauth2.muti-login",
+      "type": "java.lang.Integer",
+      "description": "1 支持多点登录 0 不支持",
+      "sourceType": "com.daer.cloud.common.security.config.Oauth2Properties",
+      "defaultValue": 1
+    }
+  ],
+  "hints": []
+}

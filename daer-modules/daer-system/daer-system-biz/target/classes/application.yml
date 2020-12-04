@@ -1,0 +1,105 @@
+server: 
+  port: 7004
+
+logging:
+  level:
+    root: INFO
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+    com.daer.cloud: DEBUG
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka
+  instance:
+    instance-id:  ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+# hystrix 配置
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          strategy: SEMAPHORE
+          thread:
+            timeoutInMilliseconds: 60000
+            shareSecurityContext: true
+
+# feign 配置
+feign:
+  hystrix:
+    enabled: true
+  okhttp:
+    enabled: true
+  httpclient:
+    enabled: false
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 10000
+        compression:
+        request:
+          enabled: true
+        response:
+          enabled: true
+#请求处理的超时时间
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: system-server
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/daerdb?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123
+    auto-commit: true
+    connection-test-query: SELECT 1
+    connection-timeout: 30000
+    idle-timeout: 30000
+    max-lifetime: 1800000
+    maximum-pool-size: 300
+    minimum-idle: 100
+    pool-name: DatebookHikariCP
+  redis:
+    host: 127.0.0.1
+    password:
+    port: 6379
+    database: 1
+
+#mybatis配置
+mapper:
+  mappers: tk.mybatis.mapper.common.Mapper
+mybatis:
+  type-aliases-package: com.daer.cloud.system.biz.model.**
+  mapper-locations: classpath:mapper/*.xml
+
+# spring security 配置
+security:
+  oauth2:
+    resource:
+      loadBalanced: true
+      user-info-uri: http://auth-server/user
+    client:
+      client-id: uc-server
+      client-secret: 123456
+    ignore:
+      urls:
+        - /v2/api-docs
+        - /actuator/**

@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.daer.cloud.demo.api.feign.fallback.RemoteDemoServiceFallbackImpl,\
+  com.daer.cloud.demo.api.feign.factory.RemoteDemoServiceFallbackFactory
