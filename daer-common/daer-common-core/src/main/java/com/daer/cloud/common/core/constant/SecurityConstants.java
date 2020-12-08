@@ -46,6 +46,21 @@ public interface SecurityConstants {
 	String REFRESH_TOKEN = "refresh_token";
 
 	/**
+	 * 用户ID字段
+	 */
+	String DETAILS_USER_ID = "user_id";
+
+	/**
+	 * 用户名字段
+	 */
+	String DETAILS_USERNAME = "username";
+
+	/**
+	 * 用户部门字段
+	 */
+	String DETAILS_DEPT_ID = "dept_id";
+
+	/**
 	 * {bcrypt} 加密的特征码
 	 */
 	String BCRYPT = "{bcrypt}";

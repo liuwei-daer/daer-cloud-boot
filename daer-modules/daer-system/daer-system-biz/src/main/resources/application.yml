@@ -90,6 +90,21 @@ mybatis:
   type-aliases-package: com.daer.cloud.system.biz.model.**
   mapper-locations: classpath:mapper/*.xml
 
+swagger:
+  enabled: true
+  base-package: com.daer.cloud.system
+  description: system API
+  globalOperationParameters:
+    - description: token
+      modelRef: String
+      name: Authorization
+      parameterType: header
+      required: true
+  license: Apache License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: system-api
+  version: 1.0.2.RELEASE
+
 # spring security 配置
 security:
   oauth2:
@@ -97,7 +112,7 @@ security:
       loadBalanced: true
       user-info-uri: http://auth-server/user
     client:
-      client-id: uc-server
+      client-id: system-server
       client-secret: 123456
     ignore:
       urls:

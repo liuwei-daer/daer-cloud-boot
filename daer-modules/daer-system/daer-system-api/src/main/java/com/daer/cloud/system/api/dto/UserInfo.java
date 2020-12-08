@@ -32,9 +32,9 @@ public class UserInfo implements Serializable {
 	private String password;
 
 	/**
-	 * 用户名
+	 * 用户部门
 	 */
-	private String realName;
+	private Integer deptId;
 
 	/**
 	 * 手机号码

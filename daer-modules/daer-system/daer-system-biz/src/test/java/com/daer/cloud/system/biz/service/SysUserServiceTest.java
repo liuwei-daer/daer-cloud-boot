@@ -28,7 +28,7 @@ public class SysUserServiceTest {
 
     @Test
     public void getUserInfoTest() throws Exception {
-        SysUser sysUser = sysUserService.findByusername("admin");
+        SysUser sysUser = sysUserService.findByUsername("admin");
         UserInfo userInfo = sysUserService.getUserInfo(sysUser);
         log.info("userInfo:{}",objectMapper.writeValueAsString(userInfo));
     }

@@ -10,7 +10,8 @@ public class SysUser {
      */
     @Id
     @GeneratedValue(generator = "JDBC")
-    private Integer id;
+    @Column(name = "id")
+    private Integer userId;
 
     /**
      * 登录账号
@@ -19,15 +20,25 @@ public class SysUser {
     private String userName;
 
     /**
-     * 用户姓名
-     */
-    @Column(name = "real_name")
-    private String realName;
-
-    /**
      * 手机号码
      */
     private String mobile;
+
+    /**
+     * 密码
+     */
+    private String password;
+
+    /**
+     * 盐加密
+     */
+    private String salt;
+
+    /**
+     * 部门ID
+     */
+    @Column(name = "dept_id")
+    private Integer deptId;
 
     /**
      * 用户邮箱
@@ -43,16 +54,6 @@ public class SysUser {
      * 头像路径
      */
     private String avatar;
-
-    /**
-     * 密码
-     */
-    private String password;
-
-    /**
-     * 盐加密
-     */
-    private String salt;
 
     /**
      * 帐号状态（0正常 1停用）
@@ -97,19 +98,19 @@ public class SysUser {
     /**
      * 获取用户ID
      *
-     * @return id - 用户ID
+     * @return userId - 用户ID
      */
-    public Integer getId() {
-        return id;
+    public Integer getUserId() {
+        return userId;
     }
 
     /**
      * 设置用户ID
      *
-     * @param id 用户ID
+     * @param userId 用户ID
      */
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     /**
@@ -131,24 +132,6 @@ public class SysUser {
     }
 
     /**
-     * 获取用户姓名
-     *
-     * @return real_name - 用户姓名
-     */
-    public String getRealName() {
-        return realName;
-    }
-
-    /**
-     * 设置用户姓名
-     *
-     * @param realName 用户姓名
-     */
-    public void setRealName(String realName) {
-        this.realName = realName == null ? null : realName.trim();
-    }
-
-    /**
      * 获取手机号码
      *
      * @return mobile - 手机号码
@@ -164,6 +147,60 @@ public class SysUser {
      */
     public void setMobile(String mobile) {
         this.mobile = mobile == null ? null : mobile.trim();
+    }
+
+    /**
+     * 获取密码
+     *
+     * @return password - 密码
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * 设置密码
+     *
+     * @param password 密码
+     */
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
+
+    /**
+     * 获取盐加密
+     *
+     * @return salt - 盐加密
+     */
+    public String getSalt() {
+        return salt;
+    }
+
+    /**
+     * 设置盐加密
+     *
+     * @param salt 盐加密
+     */
+    public void setSalt(String salt) {
+        this.salt = salt == null ? null : salt.trim();
+    }
+
+    /**
+     * 获取部门ID
+     *
+     * @return dept_id - 部门ID
+     */
+    public Integer getDeptId() {
+        return deptId;
+    }
+
+    /**
+     * 设置部门ID
+     *
+     * @param deptId 部门ID
+     */
+    public void setDeptId(Integer deptId) {
+        this.deptId = deptId;
     }
 
     /**
@@ -218,42 +255,6 @@ public class SysUser {
      */
     public void setAvatar(String avatar) {
         this.avatar = avatar == null ? null : avatar.trim();
-    }
-
-    /**
-     * 获取密码
-     *
-     * @return password - 密码
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * 设置密码
-     *
-     * @param password 密码
-     */
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
-
-    /**
-     * 获取盐加密
-     *
-     * @return salt - 盐加密
-     */
-    public String getSalt() {
-        return salt;
-    }
-
-    /**
-     * 设置盐加密
-     *
-     * @param salt 盐加密
-     */
-    public void setSalt(String salt) {
-        this.salt = salt == null ? null : salt.trim();
     }
 
     /**

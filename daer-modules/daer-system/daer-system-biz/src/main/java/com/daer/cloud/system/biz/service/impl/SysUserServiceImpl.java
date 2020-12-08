@@ -6,12 +6,16 @@ import com.daer.cloud.system.biz.service.ISysRoleService;
 import com.daer.cloud.system.biz.service.ISysUserService;
 import com.daer.cloud.system.api.dto.UserInfo;
 import com.daer.cloud.system.biz.model.SysUser;
+import com.daer.cloud.system.biz.vo.SysUserVO;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Set;
@@ -45,24 +49,41 @@ public class SysUserServiceImpl implements ISysUserService {
 	public UserInfo getUserInfo(SysUser sysUser) {
 		UserInfo userInfo = new UserInfo();
 		BeanUtils.copyProperties(sysUser,userInfo);
-		userInfo.setUserId(sysUser.getId());
 		userInfo.setUsername(sysUser.getUserName());
 		//设置角色列表  （ID）
-		List<Integer> roleIds = sysRoleService.findRoleIdByUserId(sysUser.getId());
+		List<Integer> roleIds = sysRoleService.findRoleIdByUserId(sysUser.getUserId());
 		userInfo.setRoles(roleIds);
 		//设置权限列表（permission）
-		Set<String> permissions = sysPermissionService.findPermsByUserId(sysUser.getId());
+		Set<String> permissions = sysPermissionService.findPermsByUserId(sysUser.getUserId());
 		userInfo.setPermissions(permissions);
 		return userInfo;
 	}
 
 	@Override
-	public SysUser findByusername(String username) {
+	public SysUser findByUsername(String username) {
 		return sysUserMapper.selectByUsername(username);
 	}
 
 	@Override
-	public SysUser findById(Integer userId) {
-		return sysUserMapper.selectByPrimaryKey(userId);
+	public PageInfo<SysUser> findByPage(SysUserVO sysUserVO) {
+		if (!StringUtils.isEmpty(sysUserVO.getPageNum()) && !StringUtils.isEmpty(sysUserVO.getPageSize())) {
+			PageHelper.startPage(sysUserVO.getPageNum(), sysUserVO.getPageSize());
+		}
+		List<SysUser> list = sysUserMapper.selectBySearch(sysUserVO.getUserName(),sysUserVO.getStatus(),null);
+		PageInfo<SysUser> pageInfo = new PageInfo<>(list);
+		return pageInfo;
+	}
+
+	@Override
+	public UserInfo findById(Integer userId) {
+		SysUser sysUser = sysUserMapper.selectByPrimaryKey(userId);
+		UserInfo userInfo = new UserInfo();
+		BeanUtils.copyProperties(sysUser,userInfo);
+		userInfo.setUsername(sysUser.getUserName());
+		userInfo.setPassword(null);
+		//设置角色列表
+		List<Integer> roleIds = sysRoleService.findRoleIdByUserId(sysUser.getUserId());
+		userInfo.setRoles(roleIds);
+		return userInfo;
 	}
 }

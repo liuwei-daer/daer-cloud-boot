@@ -1,5 +1,6 @@
 package com.daer.cloud.system.biz.service.impl;
 
+import com.daer.cloud.common.core.constant.CommonConstants;
 import com.daer.cloud.system.biz.mapper.SysRoleMapper;
 import com.daer.cloud.system.biz.model.SysRole;
 import com.daer.cloud.system.biz.service.ISysRoleService;
@@ -28,5 +29,12 @@ public class SysRoleServiceImpl implements ISysRoleService {
     @Override
     public List<Integer> findRoleIdByUserId(Integer userId) {
         return sysRoleMapper.selectRoleIdByUserId(userId);
+    }
+
+    @Override
+    public List<SysRole> findByAll() {
+        SysRole sysRole = new SysRole();
+        sysRole.setDelFlag(CommonConstants.STATUS_NORMAL);
+        return sysRoleMapper.select(sysRole);
     }
 }

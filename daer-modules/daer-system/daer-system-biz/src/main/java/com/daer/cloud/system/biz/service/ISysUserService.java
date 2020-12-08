@@ -2,6 +2,10 @@ package com.daer.cloud.system.biz.service;
 
 import com.daer.cloud.system.api.dto.UserInfo;
 import com.daer.cloud.system.biz.model.SysUser;
+import com.daer.cloud.system.biz.vo.SysUserVO;
+import com.github.pagehelper.PageInfo;
+
+import java.util.List;
 
 /**
  * @author liuwei
@@ -21,12 +25,15 @@ public interface ISysUserService {
 	 * @param username 用户
 	 * @return SysUser
 	 */
-	SysUser findByusername(String username);
+	SysUser findByUsername(String username);
+
+	PageInfo<SysUser> findByPage(SysUserVO sysUserVO);
 
 	/**
 	 * 根据用户ID查询用户信息
 	 * @param userId 用户ID
 	 * @return SysUser
 	 */
-	SysUser findById(Integer userId);
+	UserInfo findById(Integer userId);
+
 }

@@ -19,6 +19,17 @@ public interface ISysRoleService {
      */
     List<SysRole> findByUserId(@Param("userId") Integer userId);
 
+    /**
+     * 根据用户ID查询用户角色ID列表
+     * @param userId 用户Id
+     * @return List<Integer>
+     */
     List<Integer> findRoleIdByUserId(@Param("userId") Integer userId);
+
+    /**
+     * 根据用户ID查询用户角色ID列表
+     * @return List<SysRole>
+     */
+    List<SysRole> findByAll();
 
 }

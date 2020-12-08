@@ -20,10 +20,17 @@ public class AuthUser extends User {
 	private Integer id;
 
 	/**
+	 * 部门ID
+	 */
+	@Getter
+	private Integer deptId;
+
+	/**
 	 * Construct the <code>User</code> with the details required by
 	 * {@link DaoAuthenticationProvider}.
 	 *
 	 * @param id                    用户ID
+	 * @param deptId 部门ID
 	 * @param username              the username presented to the
 	 *                              <code>DaoAuthenticationProvider</code>
 	 * @param password              the password that should be presented to the
@@ -38,8 +45,9 @@ public class AuthUser extends User {
 	 * @throws IllegalArgumentException if a <code>null</code> value was passed either as
 	 *                                  a parameter or as an element in the <code>GrantedAuthority</code> collection
 	 */
-	public AuthUser(Integer id, String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
+	public AuthUser(Integer id, Integer deptId, String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 		this.id = id;
+		this.deptId = deptId;
 	}
 }
