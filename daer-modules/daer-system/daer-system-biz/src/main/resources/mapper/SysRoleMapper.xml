@@ -25,4 +25,15 @@
         select r.id from sys_role r left join sys_user_role ur on r.id=ur.role_id where r.del_flag=0 and ur.user_id = #{userId,jdbcType=INTEGER}
     </select>
 
+    <select id="selectBySearch" resultMap="BaseResultMap">
+        select * from sys_role where del_flag=0
+        <if test="sysRoleDTO.roleName != null and sysRoleDTO.roleName != ''">
+            and role_name like CONCAT('%',#{sysRoleDTO.roleName},'%')
+        </if>
+        <if test="sysRoleDTO.status != null and sysRoleDTO.status != ''">
+            and status = #{sysRoleDTO.status,jdbcType=VARCHAR}
+        </if>
+        order by create_time desc
+    </select>
+
 </mapper>

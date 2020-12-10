@@ -1,7 +1,7 @@
 package com.daer.cloud.system.biz.service.impl;
 
 import com.daer.cloud.common.core.constant.CommonConstants;
-import com.daer.cloud.system.biz.dto.DeptTree;
+import com.daer.cloud.system.biz.vo.DeptTree;
 import com.daer.cloud.system.biz.mapper.SysDeptMapper;
 import com.daer.cloud.system.biz.model.SysDept;
 import com.daer.cloud.system.biz.service.ISysDeptService;
@@ -22,13 +22,17 @@ public class SysDeptServiceImpl implements ISysDeptService {
     SysDeptMapper sysDeptMapper;
 
     @Override
-    public List<DeptTree> findDetpTree() {
+    public List<DeptTree> findDeptTree() {
         SysDept sysDept = new SysDept();
         sysDept.setStatus(CommonConstants.STATUS_NORMAL);
         sysDept.setDelFlag(CommonConstants.STATUS_NORMAL);
         return buildDeptTreeData(sysDeptMapper.select(sysDept));
     }
 
+    @Override
+    public List<Integer> findChildrenById(Integer id) {
+        return sysDeptMapper.selectChildrenById(id);
+    }
 
     /**
      * 生成菜单树

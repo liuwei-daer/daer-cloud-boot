@@ -12,4 +12,6 @@ public interface SysUserMapper extends Mapper<SysUser> {
 
     List<SysUser> selectBySearch(@Param("username") String username,@Param("status") String status,@Param("deptList") List<Integer> deptList);
 
+    int selectUserIsExists(@Param("username") String username,@Param("id") Integer id);
+
 }

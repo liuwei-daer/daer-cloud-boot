@@ -1,4 +1,4 @@
-package com.daer.cloud.system.biz.vo;
+package com.daer.cloud.system.biz.dto;
 
 import lombok.Data;
 
@@ -10,9 +10,10 @@ import java.util.List;
  * @date 2020-12-07
  */
 @Data
-public class RoleGrantFunVO implements Serializable {
+public class RoleGrantFunDTO implements Serializable {
 
     private Integer roleId;
+
     private List<String> permsCodeList;
 }
 

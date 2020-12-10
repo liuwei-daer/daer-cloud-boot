@@ -1,15 +1,14 @@
 package com.daer.cloud.system.biz.controller;
 
 import com.daer.cloud.common.core.util.Result;
-import com.daer.cloud.system.biz.dto.PermissionTree;
+import com.daer.cloud.system.biz.dto.PermissionDTO;
+import com.daer.cloud.system.biz.vo.PermissionTree;
 import com.daer.cloud.system.biz.model.SysUser;
 import com.daer.cloud.system.biz.service.ISysPermissionService;
 import com.daer.cloud.system.biz.service.ISysUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -39,6 +38,21 @@ public class PermissionController {
 		String username = principal.getName();
 		SysUser user = userService.findByUsername(username);
 		return Result.ok(permissionService.findMenuByUserId(user.getUserId()));
+	}
+
+	/**
+	 * 获取当前用户菜单
+	 *
+	 * @return 用户菜单信息
+	 */
+	@PostMapping("/tree")
+	public Result<List<PermissionTree>> tree(Principal principal, @RequestBody PermissionDTO permissionDTO) {
+		String username = principal.getName();
+		SysUser user = userService.findByUsername(username);
+		permissionDTO.setUserId(user.getUserId());
+		permissionDTO.setUserName(username);
+		List<PermissionTree> treeList = permissionService.findTreeByUserId(permissionDTO);
+		return Result.ok(treeList);
 	}
 
 }

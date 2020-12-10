@@ -9,7 +9,7 @@ public class SysUserRole {
      */
     @Id
     @Column(name = "user_id")
-    private String userId;
+    private Integer userId;
 
     /**
      * 角色ID
@@ -23,7 +23,7 @@ public class SysUserRole {
      *
      * @return user_id - 用户ID
      */
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
@@ -32,8 +32,8 @@ public class SysUserRole {
      *
      * @param userId 用户ID
      */
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     /**

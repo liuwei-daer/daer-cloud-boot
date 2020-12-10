@@ -1,4 +1,4 @@
-package com.daer.cloud.system.biz.dto;
+package com.daer.cloud.system.biz.vo;
 
 import com.daer.cloud.system.biz.model.SysPermission;
 import lombok.Data;

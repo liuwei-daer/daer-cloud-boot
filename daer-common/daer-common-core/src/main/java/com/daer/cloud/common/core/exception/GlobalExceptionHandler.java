@@ -21,6 +21,13 @@ import java.util.List;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+	@ExceptionHandler(BizException.class)
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	public Result bizException(BizException e) {
+		log.error("全局异常信息 ex={}", e.getErrorMsg(), e);
+		return Result.failed(Integer.parseInt(e.getErrorCode()),e.getErrorMsg());
+	}
+
 	/**
 	 * 全局异常.
 	 *

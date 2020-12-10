@@ -4,8 +4,8 @@ import com.daer.cloud.common.core.util.Result;
 import com.daer.cloud.common.log.annotation.OperateLog;
 import com.daer.cloud.common.security.annotation.Inner;
 import com.daer.cloud.system.api.dto.UserInfo;
-import com.daer.cloud.system.biz.vo.ChangePasswordVO;
-import com.daer.cloud.system.biz.vo.SysUserVO;
+import com.daer.cloud.system.biz.dto.ChangePasswordDTO;
+import com.daer.cloud.system.biz.dto.SysUserDTO;
 import com.daer.cloud.system.biz.service.ISysUserService;
 import com.daer.cloud.system.biz.model.SysUser;
 import com.github.pagehelper.PageInfo;
@@ -63,9 +63,9 @@ public class UserController {
 	 * 查询用户列表
 	 */
 	@PostMapping("list")
-	@OperateLog(value = "查询用户信息列表")
-	public Result<PageInfo<SysUser>> list(@RequestBody SysUserVO sysUserVO) {
-		return Result.ok(userService.findByPage(sysUserVO));
+	@OperateLog(value = "查询系统用户信息列表")
+	public Result<PageInfo<SysUser>> list(@RequestBody SysUserDTO sysUserDTO) {
+		return Result.ok(userService.findByPage(sysUserDTO));
 	}
 
 	/**
@@ -81,35 +81,49 @@ public class UserController {
 
 	@ResponseBody
 	@PostMapping(value = "/add")
-	@OperateLog(value = "新增后台用户信息")
-	public Result<?> add(@RequestBody SysUserVO sysUserVO) {
-		Result result = new Result<>();
-		return result;
+	@OperateLog(value = "新增系统用户信息")
+	public Result<?> add(@RequestBody SysUserDTO sysUserDTO) {
+		userService.addUser(sysUserDTO);
+		return Result.ok();
 	}
 
 	@ResponseBody
-	@PostMapping(value = "/update")
-	@OperateLog(value = "修改用户信息")
-	public Result<?> update(@RequestBody SysUserVO sysUserVO) {
-		Result result = new Result<>();
-		//获取用户手机号码是否存在
-		return result;
+	@PostMapping(value = "/edit")
+	@OperateLog(value = "修改系统用户信息")
+	public Result<?> update(@RequestBody SysUserDTO sysUserDTO) {
+		userService.editUser(sysUserDTO);
+		return Result.ok();
 	}
 
 	@ResponseBody
-	@OperateLog(value = "删除后台用户信息")
+	@PostMapping(value = "/changeStatus")
+	@OperateLog(value = "修改系统用户状态信息")
+	public Result<?> changeStatus(@RequestBody SysUserDTO sysUserDTO) {
+		userService.changeStatus(sysUserDTO);
+		return Result.ok();
+	}
+
+	@ResponseBody
+	@OperateLog(value = "删除系统用户信息")
 	@DeleteMapping(value = "/delete/{id}")
 	public Result<?> delete(@PathVariable("id") final int id) {
-		Result result = new Result<>();
-		return result;
+		userService.deleteById(id);
+		return Result.ok();
+	}
+
+
+	@ResponseBody
+	@OperateLog(value = "重置用户密码")
+	@PostMapping(value = "/resetPwd")
+	public Result<?> resetPwd(@RequestBody ChangePasswordDTO changePasswordDTO) {
+		userService.resetPwd(changePasswordDTO);
+		return Result.ok();
 	}
 
 	@ResponseBody
 	@OperateLog(value = "用户修改密码")
 	@PostMapping(value = "/changePwd")
-	public Result<?> changePwd(@RequestBody ChangePasswordVO changePasswordVO) {
-//		ShiroUser shiroUser = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
-		Result result = new Result<>();
+	public Result<?> changePwd(@RequestBody ChangePasswordDTO changePasswordDTO) {
 //		if(!BCrypt.checkpw(changePasswordDto.getPassword(),shiroUser.getPassword())){
 //			//验证旧密码是否正确
 //			throw new BizException(SysCode.CHANGEPWD_PWD_INCORRECT);
@@ -136,7 +150,7 @@ public class UserController {
 //		UsernamePasswordToken token = new UsernamePasswordToken(shiroUser.getMobile().toString(), changePasswordDto.getNewpassword());
 //		SecurityUtils.getSubject().login(token);
 //		result.setSuccess(true);
-		return result;
+		return Result.ok();
 	}
 
 

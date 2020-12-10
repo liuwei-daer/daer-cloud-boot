@@ -72,7 +72,7 @@ public class CustUserDetailsServiceImpl implements UserDetailsService {
 		Collection<? extends GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(dbAuthsSet.toArray(new String[0]));
 
 		// 构造security用户
-		return new AuthUser(info.getUserId(), info.getDeptId(), info.getUsername(), info.getPassword(),
+		return new AuthUser(info.getUserId(), info.getDeptId(), info.getUserName(), info.getPassword(),
 			StrUtil.equals(info.getStatus(), CommonConstants.STATUS_NORMAL), true, true, true, authorities);
 	}
 }

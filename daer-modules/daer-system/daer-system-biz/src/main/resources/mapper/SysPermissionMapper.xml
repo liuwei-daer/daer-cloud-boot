@@ -30,7 +30,7 @@
         <result column="del_flag" jdbcType="CHAR" property="delFlag"/>
     </resultMap>
 
-    <resultMap id="PermResultMap" type="com.daer.cloud.system.biz.dto.PermissionTree">
+    <resultMap id="PermResultMap" type="com.daer.cloud.system.biz.vo.PermissionTree">
         <!--
           WARNING - @mbg.generated
         -->

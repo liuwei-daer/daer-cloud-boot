@@ -65,6 +65,10 @@ public class Result<T> implements Serializable {
 		return restResult(data, false, CommonConstants.FAIL, message);
 	}
 
+	public static <T> Result<T> failed(int code, String message) {
+		return restResult(null, false, code, message);
+	}
+
 	private static <T> Result<T> restResult(T data, boolean flag,int code, String message) {
 		Result<T> result = new Result<>();
 		result.setSuccess(flag);

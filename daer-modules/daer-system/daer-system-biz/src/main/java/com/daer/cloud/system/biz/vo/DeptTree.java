@@ -1,7 +1,6 @@
-package com.daer.cloud.system.biz.dto;
+package com.daer.cloud.system.biz.vo;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.util.ArrayList;

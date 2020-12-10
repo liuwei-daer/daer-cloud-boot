@@ -5,7 +5,7 @@ import lombok.Getter;
 
 /**
  * @author liuwei
- * @date 2018-0310
+ * @date 2018-03-10
  * 异常基类
  */
 public class BizException extends RuntimeException {
@@ -49,15 +49,9 @@ public class BizException extends RuntimeException {
 	 * @param errorMsg
 	 */
 	public BizException(String errorCode, String errorMsg) {
-		super();
+		super(errorMsg);
 		this.errorCode=errorCode;
 		this.errorMsg=errorMsg;
-	}
-
-	public BizException(String errorCode, String...errors){
-		super();
-		this.errors = errors;
-		this.errorCode = errorCode;
 	}
 
 	/**
@@ -105,6 +99,5 @@ public class BizException extends RuntimeException {
 		this.errorCode=errorCode;
 		this.errorMsg=errorMsg;
 	}
-
 	
 }

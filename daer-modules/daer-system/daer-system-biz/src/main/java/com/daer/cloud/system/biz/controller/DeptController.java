@@ -1,7 +1,7 @@
 package com.daer.cloud.system.biz.controller;
 
 import com.daer.cloud.common.core.util.Result;
-import com.daer.cloud.system.biz.dto.DeptTree;
+import com.daer.cloud.system.biz.vo.DeptTree;
 import com.daer.cloud.system.biz.service.ISysDeptService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class DeptController {
 	 */
 	@GetMapping("/tree")
 	public Result<List<DeptTree>> treeList() {
-		return Result.ok(sysDeptService.findDetpTree());
+		return Result.ok(sysDeptService.findDeptTree());
 	}
 
 }

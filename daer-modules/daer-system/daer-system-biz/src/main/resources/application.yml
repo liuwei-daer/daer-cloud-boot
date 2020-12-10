@@ -82,6 +82,11 @@ spring:
     password:
     port: 6379
     database: 1
+  jackson:
+    #字符串时间，用这行表示
+    date-format: yyyy-MM-dd HH:mm:ss
+    #设置为东八区时间
+    timezone: GMT+8
 
 #mybatis配置
 mapper:

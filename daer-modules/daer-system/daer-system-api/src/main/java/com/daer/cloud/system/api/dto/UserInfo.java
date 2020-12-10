@@ -24,7 +24,7 @@ public class UserInfo implements Serializable {
 	/**
 	 * 用户名
 	 */
-	private String username;
+	private String userName;
 
 	/**
 	 * 用户密码
@@ -55,6 +55,11 @@ public class UserInfo implements Serializable {
 	 * 头像
 	 */
 	private String avatar;
+
+	/**
+	 * 备注
+	 */
+	private String remark;
 
 	/**
 	 * 创建时间

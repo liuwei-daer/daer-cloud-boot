@@ -22,4 +22,21 @@
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="del_flag" jdbcType="CHAR" property="delFlag" />
   </resultMap>
+
+  <select id="selectChildrenById" resultType="java.lang.Integer">
+    SELECT
+        id
+    FROM
+        (SELECT
+            t1.id,
+                IF(FIND_IN_SET(parent_id, @pids) > 0, @pids:=CONCAT(@pids, ',', id), 0) AS ischild
+        FROM
+            (SELECT
+            id, parent_id
+        FROM
+            sys_dept t
+        ORDER BY parent_id , id) t1, (SELECT @pids:=#{id}) t2) t3
+    WHERE
+        ischild != 0;
+  </select>
 </mapper>

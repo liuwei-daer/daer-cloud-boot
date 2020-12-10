@@ -1,9 +1,7 @@
 package com.daer.cloud.system.biz.service;
 
 import com.daer.cloud.system.SystemApplication;
-import com.daer.cloud.system.api.dto.UserInfo;
-import com.daer.cloud.system.biz.dto.DeptTree;
-import com.daer.cloud.system.biz.model.SysUser;
+import com.daer.cloud.system.biz.vo.DeptTree;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -31,7 +29,7 @@ public class SysDeptServiceTest {
 
     @Test
     public void getUserInfoTest() throws Exception {
-        List<DeptTree> list = sysDeptService.findDetpTree();
+        List<DeptTree> list = sysDeptService.findDeptTree();
         log.info("userInfo:{}",objectMapper.writeValueAsString(list));
     }
 }
